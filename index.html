@@ -58,24 +58,43 @@ body { background-color: #111; }
 <div id="back">
 	<img id="skyline" src="skyline.degraded1.jpeg"/>
 	<script type="text/javascript" charset="utf-8">
-var skylineImg = document.getElementById('skyline');
-var switchSkylineImage = function(skylineImgEl) {
-	var skylineImgSrcs = [];
-	for (var i = 1; i <= 4; ++i)
-		skylineImgSrcs.push('skyline.degraded'+i+'.jpeg');
+var skyline = {};
+
+skyline.getImgEl = function getImgEl() {
+	if (this._getImgEl == undefined)
+		this._getImgEl = document.getElementById('skyline');
 	
-	var currentImgSrcI = skylineImgSrcs.indexOf(skylineImgEl.src);
+	return this._getImgEl;
+}
+skyline.getImgSrcs = function getImgSrcs() {
+	var imgSrcs = [];
+	for (var suffixI = 1; suffixI <= 4; ++suffixI)
+		imgSrcs.push('skyline.degraded'+suffixI+'.jpeg');
+	
+	return imgSrcs;
+}
+skyline.preloadImgSrcs = function preloadImgSrcs() {
+	var imgSrcs = this.getImgSrcs();
+	
+	for (var imgI = imgSrcs.length - 1; imgI >= 0; --imgI)
+		(new Image()).src = imgSrcs[imgI];
+}
+skyline.switchImage = function switchImage() {
+	var imgEl = this.getImgEl();
+	var imgSrcs = this.getImgSrcs();
+	var currentImgSrcI = imgSrcs.indexOf(imgEl.src);
 	if (currentImgSrcI != -1)
-		skylineImgSrcs.splice(currentImgSrcI, 1);
+		imgSrcs.splice(currentImgSrcI, 1);
 	
-	var randomI = Math.floor(Math.random() * skylineImgSrcs.length);
-	var randomImgSrc = skylineImgSrcs[randomI];
+	var randomI = Math.floor(Math.random() * imgSrcs.length);
+	var randomImgSrc = imgSrcs[randomI];
 	
-	skylineImgEl.src = randomImgSrc;
+	imgEl.src = randomImgSrc;
 };
 
-switchSkylineImage(skylineImg);
-setInterval(function() { switchSkylineImage(skylineImg); }, 4000);
+skyline.preloadImgSrcs();
+skyline.switchImage();
+setInterval(function() { skyline.switchImage(); }, 4000);
 	</script>
 </div>
 

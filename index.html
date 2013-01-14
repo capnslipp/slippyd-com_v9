@@ -49,10 +49,9 @@ body { background-color: #111; }
 	position: relative;
 }
 
-#hud .horizon > .label {
-	margin: 0 auto;
-	margin-top: -2em;
-}
+#hud .horizon > .label { margin-top: -2em; }
+
+#hud .label .line { white-space: nowrap; }
 		</style>
 	</head>
 	<body>
@@ -105,7 +104,7 @@ setInterval(function() { skyline.switchImage(); }, 4000);
 	<div id="hud">
 		<div class="horizon">
 			<div class="label">
-				<nobr>This page</nobr> is intentionally <nobr>left blank.</nobr>
+				<nobr class="line">This page has</nobr> <nobr class="line">been intentionally</nobr> <nobr class="line">left blank.</nobr>
 			</div>
 		</div>
 	</div>

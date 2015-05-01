@@ -32,6 +32,8 @@ body { background-color: #111; }
 	margin: 0 auto;
 	margin-top: -288px; /* #label currently lays out with a height of 576px */
 }
+#hud,
+#hud a { color: #fff; }
 
 #back {
 	position: absolute; z-index: 0;
@@ -41,6 +43,11 @@ body { background-color: #111; }
 
 #back > img {
 	width: 100%;
+}
+
+#hud .label,
+#hud .social-links {
+	text-align: center;
 }
 
 @font-face {
@@ -54,15 +61,10 @@ body { background-color: #111; }
 	font-weight: bold; font-style: normal;
 }
 #hud .label {
-	text-align: center;
 	font: 52px 'Chunk Five', 'Helvetica Neue', Helvetica, san-serif;
 	text-shadow: rgba(0, 0, 0, 0.25) 0px 3px 3px;
 	
 	position: relative;
-}
-#hud .label,
-#hud .label a {
-	color: #fff;
 }
 @font-face {
 	font-family: 'LeagueScriptNumberOne';
@@ -75,7 +77,7 @@ body { background-color: #111; }
 }
 #hud .label em {
 	display: inline-block; /* req'd by transform: */
-	font: 52px 'LeagueScriptNumberOne', fancy; color: #fff;
+	font: 52px 'LeagueScriptNumberOne', fancy;
 	transform: rotate(-1deg);
 	text-transform: none;
 	margin-right: 0.0em;
@@ -155,35 +157,37 @@ setInterval(function() { skyline.switchImage(); }, 4000);
 	<div id="hud">
 		<div class="label">
 			<nobr class="line"><em>Cap'n</em> Slipp Douglas Thompson</nobr>
-			<nobr class="line social-links">
+		</div>
+		<div class="social-links">
+			<nobr class="line">
 				<a href="https://twitter.com/capnslipp" alt="Twitter">a</a>
 				<a href="http://capnslipp.tumblr.com/" alt="Tumblr">z</a>
 				<a href="https://disqus.com/by/capnslipp/" alt="Disqus">:</a>
 				<a href="https://www.pinterest.com/capnslipp/" alt="Pinterest">d</a>
 				<a href="https://delicious.com/slippyd" alt="Delicious">I</a>
 			</nobr>
-			<nobr class="line social-links">
+			<nobr class="line">
 				<a href="http://www.last.fm/user/slippyd" alt="Last.fm">q</a>
 				<a href="https://soundcloud.com/capnslipp" alt="SoundCloud">n</a>
 				<a href="https://play.spotify.com/user/slippdouglas" alt="Spotify">o</a>
 				<a href="https://www.youtube.com/user/slippydouglas" alt="YouTube">r</a>
 				<a href="https://vimeo.com/capnslipp" alt="Vimeo">s</a>
 			</nobr>
-			<nobr class="line social-links">
+			<nobr class="line">
 				<a href="https://foursquare.com/capnslipp" alt="Foursquare">e</a>
 				<a href="http://capnslipp.yelp.com/" alt="Yelp">h</a>
 				<a href="https://en.wikipedia.org/wiki/User:Slippyd" alt="Wikipedia">N</a>
 				<a href="http://steamcommunity.com/id/capnslipp/" alt="Steam">X</a>
 				<a href="https://account.xbox.com/en-US/Profile?gamerTag=SlippyDX" alt="Xbox Live">Y</a>
 			</nobr>
-			<nobr class="line social-links">
+			<nobr class="line">
 				<a href="https://www.linkedin.com/in/capnslipp" alt="LinkedIn">j</a>
 				<a href="https://github.com/capnslipp" alt="GitHub">Q</a>
 				<a href="https://www.behance.net/slippyd" alt="Behance">H</a>
 				<a href="http://stackoverflow.com/users/177525/slipp-d-thompson" alt="Stack Overflow">(</a>
 				<a href="http://www.meetup.com/members/633202/" alt="Meetup">]</a>
 			</nobr>
-			<nobr class="line social-links">
+			<nobr class="line">
 				<a href="https://instagram.com/capnslipp/" alt="Instagram">x</a>
 				<a href="https://www.flickr.com/photos/slippyd/" alt="Flickr">v</a>
 				<a href="https://vine.co/CapnSlipp" alt="Vine">u</a>

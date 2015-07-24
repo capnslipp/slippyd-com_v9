@@ -145,9 +145,15 @@ body { background-color: #111; }
 
 
 <div id="back">
-	<img id="skyline" src="skyline.degraded1.jpeg"/>
+	<img id="skyline" src="skyline.hq.jpeg"/>
 	<script type="text/javascript" charset="utf-8">
-var skyline = {};
+var skyline = {
+	kFlickerDelayMin_s: 1,
+	kFlickerDelayMax_s: 10,
+	kFlickerDuration_s: 0.1,
+	kFlickerDoubleDuration_s: 0.5,
+	kFlickerDoubleChance: 0.2,
+};
 
 skyline.getImgEl = function getImgEl() {
 	if (this._getImgEl == undefined)
@@ -156,11 +162,18 @@ skyline.getImgEl = function getImgEl() {
 	return this._getImgEl;
 }
 skyline.getImgSrcs = function getImgSrcs() {
-	var imgSrcs = [];
-	for (var suffixI = 1; suffixI <= 4; ++suffixI)
-		imgSrcs.push('skyline.degraded'+suffixI+'.jpeg');
+	if (this._imgSrcs == undefined) {
+		this._imgSrcs = [
+			this.getImgEl().attributes['src'].value,
+			'skyline.degraded.jpeg',
+			'skyline.degraded1.jpeg',
+			'skyline.degraded2.jpeg',
+			'skyline.degraded3.jpeg',
+			'skyline.degraded4.jpeg',
+		];
+	}
 	
-	return imgSrcs;
+	return this._imgSrcs;
 }
 skyline.preloadImgSrcs = function preloadImgSrcs() {
 	var imgSrcs = this.getImgSrcs();
@@ -168,22 +181,59 @@ skyline.preloadImgSrcs = function preloadImgSrcs() {
 	for (var imgI = imgSrcs.length - 1; imgI >= 0; --imgI)
 		(new Image()).src = imgSrcs[imgI];
 }
-skyline.switchImage = function switchImage() {
+skyline.flickerAltImage = function flickerAltImage() {
 	var imgEl = this.getImgEl();
 	var imgSrcs = this.getImgSrcs();
-	var currentImgSrcI = imgSrcs.indexOf(imgEl.src);
-	if (currentImgSrcI != -1)
-		imgSrcs.splice(currentImgSrcI, 1);
 	
-	var randomI = Math.floor(Math.random() * imgSrcs.length);
-	var randomImgSrc = imgSrcs[randomI];
+	var doDoubleFlicker = Math.random() < this.kFlickerDoubleChance;
 	
-	imgEl.src = randomImgSrc;
+	var normalImgSrc = imgSrcs[0];
+	var altImgSrc = imgSrcs[1];
+	
+	var alt2ImgSrc = null;
+	if (doDoubleFlicker) {
+		var randomI = Math.floor(Math.random() * (imgSrcs.length - 2)) + 2;
+		alt2ImgSrc = imgSrcs[randomI];
+	}
+	
+	var resetImageToNormal = function resetImageToNormal() {
+		imgEl.src = normalImgSrc;
+	}
+	var setImageToAlt = function setImageToAlt() {
+		imgEl.src = altImgSrc;
+	}
+	var setImageToAlt2 = function setImageToAlt() {
+		imgEl.src = alt2ImgSrc;
+	}
+	
+	var flickerDuration_ms = this.kFlickerDuration_s * 1000;
+	var flickerDoubleDuration_ms = this.kFlickerDoubleDuration_s * 1000;
+	
+	setImageToAlt();
+	setTimeout( function() {
+		if (doDoubleFlicker) {
+			setImageToAlt2();
+			setTimeout(resetImageToNormal, flickerDoubleDuration_ms);
+			return;
+		}
+		else {
+			resetImageToNormal();
+		}
+	}, flickerDuration_ms);
 };
+skyline.flickerRepeatedly = function flickerRepeatedly() {
+	var delay_s = Math.random() * (this.kFlickerDelayMax_s - this.kFlickerDelayMin_s) + this.kFlickerDelayMin_s;
+	setTimeout(
+		function() {
+			skyline.flickerAltImage();
+			skyline.flickerRepeatedly();
+		},
+		delay_s * 1000
+	);
+}
 
 skyline.preloadImgSrcs();
-skyline.switchImage();
-setInterval(function() { skyline.switchImage(); }, 4000);
+skyline.flickerRepeatedly();
 	</script>
 </div>
 

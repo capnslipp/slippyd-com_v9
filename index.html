@@ -73,6 +73,7 @@ body { background-color: #111; }
 	width: 100%; height: auto;
 }
 
+#hud,
 #hud .label,
 #hud .social-links {
 	text-align: center;
@@ -94,6 +95,7 @@ body { background-color: #111; }
 	text-shadow: rgba(0, 0, 0, 0.25) 0px 3px 3px;
 	
 	position: relative;
+	display: inline-block;
 	
 	margin: 40px 0;
 }
@@ -117,6 +119,22 @@ body { background-color: #111; }
 .line {
 	display: block;
 	white-space: nowrap;
+}
+
+#hud .divider {
+	position: relative;
+	width: 100%; height: 2px;
+}
+#hud .divider > .fill {
+	position: absolute;
+	top: 0; bottom: 0;
+	left: -40px; right: -40px;
+	
+	background-color: #fff;
+	box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.15);
+}
+#hud .label > .divider {
+	margin-top: 12px;
 }
 
 @font-face {
@@ -143,9 +161,9 @@ body { background-color: #111; }
 }
 
 #capn {
-	width: 133.5px;
-	height: 92.625px;
-	margin: 30px 0 -30px;
+	width: 160.2px;
+	height: 111.15px;
+	margin: 45px 0 -45px;
 }
 		</style>
 	</head>
@@ -252,6 +270,7 @@ skyline.flickerRepeatedly();
 				<em><img id="capn" src="capn.svg" alt="Cap'n" width="178" height="123.5"/></em>
 				Slipp Douglas Thompson
 			</nobr>
+			<div class="divider"><div class="fill"></div></div>
 		</div>
 		<div class="social-links">
 			<nobr class="line">

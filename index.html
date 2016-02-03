@@ -99,22 +99,6 @@ body { background-color: #111; }
 	
 	margin: 40px 0;
 }
-@font-face {
-	font-family: 'LeagueScriptNumberOne';
-	src: url('fonts/LeagueScriptNumberOne-webfont.eot');
-	src: url('fonts/LeagueScriptNumberOne-webfont.eot?#iefix') format('embedded-opentype'),
-		url('fonts/LeagueScriptNumberOne-webfont.woff') format('woff'),
-		url('fonts/LeagueScriptNumberOne-webfont.ttf') format('truetype'),
-		url('fonts/LeagueScriptNumberOne-webfont.svg') format('svg');
-	font-weight: normal; font-style: normal;
-}
-#hud .label em {
-	display: inline-block; /* req'd by transform: */
-	font: 52px 'LeagueScriptNumberOne', fancy;
-	transform: rotate(-1deg);
-	text-transform: none;
-	margin-right: 0.0em;
-}
 
 .line {
 	display: block;
@@ -267,7 +251,7 @@ skyline.flickerRepeatedly();
 	<div id="hud">
 		<div class="label">
 			<nobr class="line">
-				<em><img id="capn" src="capn.svg" alt="Cap'n" width="178" height="123.5"/></em>
+				<img id="capn" src="capn.svg" alt="Cap'n" width="178" height="123.5"/>
 				Slipp Douglas Thompson
 			</nobr>
 			<div class="divider"><div class="fill"></div></div>

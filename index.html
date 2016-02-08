@@ -99,11 +99,23 @@ body { background-color: #111; }
 	
 	margin: 40px 0;
 }
+#capn-graphic,
+#slipp-graphic,
+#douglas-graphic,
+#thompson-graphic { display: inline-block; vertical-align: top; }
 #capn-graphic {
 	width: 160.2px;
-	height: 111.15px;
+	height: 111.15px; font-size: 111.15px;
 }
-#hud h1 #capn-graphic { margin-bottom: -52px; }
+#hud h1 #capn-graphic { margin-bottom: -0.5em; margin-top: 6px; }
+
+#slipp-graphic { position: relative; }
+#slipp-graphic > * { position: absolute; top: 0; left: 0; }
+#slipp-graphic, #slipp-graphic > * {
+	width: 192px;
+	height: 86px; font-size: 86px;
+}
+#slipp-graphic .stripe-fill { top: 5px; }
 
 .line {
 	display: block;
@@ -267,7 +279,11 @@ skyline.flickerRepeatedly();
 		<h1>
 			<nobr class="line">
 				<img id="capn-graphic" src="capn.svg" alt="Cap'n" width="178" height="123.5"/>
-				Slipp Douglas Thompson
+				<div id="slipp-graphic">
+					<img class="border" src="slipp-border.svg" alt="slipp" width="192" height="86"/>
+					<img class="stripe-fill" src="slipp-stripe-fill.svg" alt="slipp" width="192" height="86"/>
+				</div>
+				Douglas Thompson
 			</nobr>
 			<div class="divider"><div class="fill"></div></div>
 		</h1>
